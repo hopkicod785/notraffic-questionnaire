@@ -41,6 +41,9 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use('/uploads', express.static(UPLOADS_DIR));
 
+// Serve static files from the React app
+app.use(express.static(join(__dirname, '../client/dist')));
+
 // Database file path
 const DB_FILE = join(__dirname, 'submissions.json');
 
@@ -164,7 +167,13 @@ app.delete('/api/submissions/:id', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, '../client/dist/index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
