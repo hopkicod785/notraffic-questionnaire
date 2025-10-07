@@ -1,0 +1,24 @@
+{
+  "name": "detection-equipment-questionnaire",
+  "version": "1.0.0",
+  "description": "Detection Equipment Installation Questionnaire System",
+  "scripts": {
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start:prod": "cd server && npm install && node server.js"
+  },
+  "keywords": ["detection", "equipment", "questionnaire", "traffic", "intersection"],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
